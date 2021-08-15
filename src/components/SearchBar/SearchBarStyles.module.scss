@@ -1,0 +1,23 @@
+.container{
+    padding: 0rem;
+    margin: 0.5rem 0rem;
+}
+.search-input-wrapper{
+    width: 90%;
+    padding: 0.25rem 1rem;
+    background-color: #E8E6E6;
+    border-radius: 0.25rem;
+
+    .icon{
+        font-size: 1.25rem;
+    }
+
+    .searchInput{
+        background-color: #E8E6E6;
+        width: 100%;
+        outline: none;
+        border: none;
+        padding: 0.25rem 1rem;
+        font-size: 1rem;
+    }
+}

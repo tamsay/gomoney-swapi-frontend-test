@@ -1,0 +1,47 @@
+$pageHeaderText : white;
+$headerIntroText: #CFCFD0;
+
+.container{
+    background-image: url(../../assets/hero-banner.jpg);
+    height: 20%;
+    width: 100%;
+    padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+}
+
+.page-header{
+    border-bottom: 1px solid white;
+    // width: fit-content;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+
+    .logo-div{
+        align-items: center;
+        justify-content: flex-end;
+        padding-right: 1rem;
+        width: 50%;
+
+        .logo{
+            width: 4rem;
+            padding: 0rem;
+        }
+    }
+
+    .page-header-text{
+        color: $pageHeaderText;
+        font-size: 1.125rem;
+        font-weight: 800;
+        width: 50%;
+        text-align: left;
+        margin: 0rem;
+    }
+
+}
+
+.header-intro{
+    font-size: 1rem;
+    font-weight: 800;
+    color: $headerIntroText;
+    text-align: center;
+    margin: 1.5rem 0rem 1rem 0rem;
+}
