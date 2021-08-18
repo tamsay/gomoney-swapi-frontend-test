@@ -6,6 +6,7 @@ interface swapiContextInterface {
     starships: Record<string, any> | null;
     characters: Record<string, any> | null;
     planets: Record<string, any> | null;
+    error: any;
   }
   interface Props {
     children: ReactNode;
@@ -16,7 +17,9 @@ const SwapiContextProvider = (props: Props) => {
 
   const [starships, setStarShips] = useState<null | Record<string, any>>(null);
   const [characters, setCharacters] = useState<null | Record<string, any>>(null);
-  const [planets, setPlanets] = useState<null | Record<string, any>>(null);
+    const [planets, setPlanets] = useState<null | Record<string, any>>(null);
+  const [error, setError] = useState<any>(null);
+    
 
     const defaultUrl = "https://swapi.dev/api/";
 
@@ -31,11 +34,15 @@ const SwapiContextProvider = (props: Props) => {
             setCharacters(charactersData.data);
             setPlanets(planetsData.data);
         }
-        swapiData();
+        try {
+            swapiData();
+        } catch (err) {
+            setError(err.data.message);
+          }
     }, [])
 
     return (
-        <SwapiContext.Provider value={{ characters, planets, starships }}>
+        <SwapiContext.Provider value={{ characters, planets, starships, error }}>
             {props.children}
         </SwapiContext.Provider>
     )

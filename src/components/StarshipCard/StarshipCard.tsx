@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import styles from "./StarshipCardStyles.module.scss";
+import ReadMoreButton from "../ReadMoreButton/ReadMoreButton";
 
 
 const StarshipCard = (props: Record<string, any>) => {
@@ -15,7 +16,7 @@ const StarshipCard = (props: Record<string, any>) => {
                 <h5>{name}</h5>
                 <p>{ model}</p>
                 <p>{cargoCapacity}</p>
-                <button>Read More</button>
+                <ReadMoreButton cardName={name} category='starshipsCategory' />
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import styles from "./PlanetCardStyles.module.scss";
+import ReadMoreButton from "../ReadMoreButton/ReadMoreButton";
 
 
 const PlanetCard = (props: Record<string, any>) => {
@@ -14,7 +15,7 @@ const PlanetCard = (props: Record<string, any>) => {
                 <h5>{name}</h5>
                 <p>{temperature}</p>
                 <p>{population}</p>
-                <button>Read More</button>
+                <ReadMoreButton cardName={name} category='planetsCategory' />
             </div>
         </div>
     )
