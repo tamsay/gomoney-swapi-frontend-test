@@ -5,7 +5,7 @@ import cx from 'classnames';
 import Navbar from '../Navbar/Navbar';
 import Logo from '../../assets/logo.png';
 
-const Header =()=>{
+const Header = () => {
     return (
         <div className={cx(styles.container, "flex-col")}>
 

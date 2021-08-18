@@ -1,0 +1,11 @@
+.container{
+    width: auto;
+    flex-direction: column !important;
+}
+.cardTop{
+    display: flex;
+    justify-content: center;
+    img{
+        width: 50%;
+    }
+}

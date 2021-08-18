@@ -1,44 +1,61 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, {useContext} from "react";
 import cx from 'classnames';
 import styles from "./HomePageStyles.module.scss";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
-import CardGroup from "../../components/CardGroup/CardGroup";
 import Spinner from "../../components/Spinner/Spinner";
-import {PeopleContext, PlanetsContext, StarshipsContext} from "../../context/index";
+import StarshipCard from "../../components/StarshipCard/StarshipCard";
+import PlanetCard from "../../components/PlanetCard/PlanetCard";
+import CharacterCard from "../../components/CharacterCard/CharacterCard";
+import {SwapiContext} from "../../context/index";
 
 const HomePage = () => {
-    const people = useContext(PeopleContext)();
-    const planets = useContext(PlanetsContext)();
-    const starships = useContext(StarshipsContext)();
-    const [peopleSpinner, setPeopleSpinner] = useState(true)
-    const [starshipsSpinner, setStarshipsSpinner] = useState(true)
-    const [planetsSpinner, setPlanetsSpinner] = useState(true)
 
-    useEffect(() => {
-        starships.length > 0 ? setStarshipsSpinner(false) : setStarshipsSpinner(true);
-        planets.length > 0 ? setPlanetsSpinner(false) : setPlanetsSpinner(true);
-        people.length > 0 ? setPeopleSpinner(false) : setPeopleSpinner(true);
-    }, [people, planets, starships]);
-
+    const { characters, planets, starships } = useContext(SwapiContext);
+    
     return (
         <div className={cx(styles.container, "flex-column")}>
             
             <div>
                <SectionHeader headerText="Popular Starships" />
-                {starshipsSpinner ? <Spinner /> : <CardGroup data={starships} display="flex-col" />}; 
+                {
+                    !starships ? <Spinner /> :
+                    (<div className={cx(styles.cardWrapper)}>
+                    {starships.results.slice(0,6).map((element: any, index:number) => {
+                        return (
+                            <StarshipCard key={index * 5} name={element.name} model={element.model} cargoCapacity={element.cargo_capacity} />
+                        )
+                    })}</div>)
+                };
+                <button>View All</button>
             </div>
             
             <div>
                <SectionHeader headerText="Popular Planets" />
-                {planetsSpinner ? <Spinner /> : <CardGroup data={planets} display="flex-col" />};
+                {
+                    !planets ? <Spinner /> :
+                    (<div className={cx(styles.cardWrapper)}>
+                    {planets.results.map((element: any, index:number) => {
+                        return (
+                            <PlanetCard key={index * 5} name={element.name} temperature={element.climate} population={element.population}/>
+                        )
+                    })}</div>)
+                };
+                <button>View All</button>
             </div>
             
             <div>
                <SectionHeader headerText="Popular Characters" />
-                {peopleSpinner ? <Spinner /> : <CardGroup data={people} display="flex-row" />};
+                {
+                    !characters ? <Spinner /> :
+                    (<div className={cx(styles.cardWrapper)}>
+                    {characters.results.slice(0,4).map((element: any, index:number) => {
+                        return (
+                            <CharacterCard key={index * 5} name={element.name} birthYear={element.birth_year} gender={element.gender} />
+                        )
+                    })}</div>)
+                };
+                <button>View All</button>
             </div>
-            
-
         </div>
     )
 }

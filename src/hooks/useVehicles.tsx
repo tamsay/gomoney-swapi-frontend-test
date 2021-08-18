@@ -1,5 +1,5 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useEffect } from "react";
-
 
 export const useVehicles = () => {
     const [vehicles, setVehicles] = useState<Array<any>>([])
@@ -8,8 +8,8 @@ export const useVehicles = () => {
         fetch("https://swapi.dev/api/vehicles/")
             .then(response => response.json())
             .then(data => {
-                console.log(data.results);
-                setVehicles(data.results);
+                console.log(data);
+                setVehicles(data);
             })
     }, []);
 
