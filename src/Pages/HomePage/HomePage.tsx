@@ -1,4 +1,5 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
+import {useHistory} from 'react-router-dom';
 import cx from 'classnames';
 import styles from "./HomePageStyles.module.scss";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
@@ -8,53 +9,62 @@ import PlanetCard from "../../components/PlanetCard/PlanetCard";
 import CharacterCard from "../../components/CharacterCard/CharacterCard";
 import {SwapiContext} from "../../context/index";
 
+// Spinner types
+// "Audio" | "BallTriangle" | "Bars" | "Circles" | "Grid" | "Hearts" | "Oval" | "Puff" | "Rings" | "TailSpin" | "ThreeDots" | "Watch" | "RevolvingDot" | "Triangle" | "Plane" | "MutatingDots" | "CradleLoader"
+
 const HomePage = () => {
 
+    const history = useHistory();
+
     const { characters, planets, starships } = useContext(SwapiContext);
+
+    const ViewAll = (category: string) => {
+        history.push(`/view-all/?category=${category}`)
+    }
     
     return (
-        <div className={cx(styles.container, "flex-column")}>
+        <div className={cx(styles.container, "flex-col")}>
             
-            <div>
-               <SectionHeader headerText="Popular Starships" />
+            <div className={cx(styles.sectionWrapper, "flex-col")}>
+                <SectionHeader headerText="Popular Starships" />
                 {
-                    !starships ? <Spinner /> :
-                    (<div className={cx(styles.cardWrapper)}>
+                    !starships ? <Spinner height="50" type="BallTriangle"/> :
+                    (<div className={cx(styles.cardWrapper, "flex-col")}>
                     {starships.results.slice(0,6).map((element: any, index:number) => {
                         return (
                             <StarshipCard key={index * 5} name={element.name} model={element.model} cargoCapacity={element.cargo_capacity} />
                         )
                     })}</div>)
                 };
-                <button>View All</button>
+                <button onClick={()=>ViewAll("starships")}>View All</button>
             </div>
             
-            <div>
+            <div className={cx(styles.sectionWrapper, "flex-col")}>
                <SectionHeader headerText="Popular Planets" />
                 {
-                    !planets ? <Spinner /> :
-                    (<div className={cx(styles.cardWrapper)}>
+                    !planets ? <Spinner height="50" type="BallTriangle"/> :
+                    (<div className={cx(styles.cardWrapper, "flex-col")}>
                     {planets.results.map((element: any, index:number) => {
                         return (
                             <PlanetCard key={index * 5} name={element.name} temperature={element.climate} population={element.population}/>
                         )
                     })}</div>)
                 };
-                <button>View All</button>
+                <button onClick={()=>ViewAll("planets")}>View All</button>
             </div>
             
-            <div>
+            <div className={cx(styles.sectionWrapper, "flex-col")}>
                <SectionHeader headerText="Popular Characters" />
                 {
-                    !characters ? <Spinner /> :
-                    (<div className={cx(styles.cardWrapper)}>
+                    !characters ? <Spinner height="50" type="BallTriangle"/> :
+                    (<div className={cx(styles.cardWrapper, "flex-col")}>
                     {characters.results.slice(0,4).map((element: any, index:number) => {
                         return (
                             <CharacterCard key={index * 5} name={element.name} birthYear={element.birth_year} gender={element.gender} />
                         )
                     })}</div>)
                 };
-                <button>View All</button>
+                <button onClick={()=>ViewAll("characters")}>View All</button>
             </div>
         </div>
     )

@@ -1,4 +1,13 @@
 .container{
     padding-top: 1rem;
-    
+    align-items: center;
+}
+.sectionWrapper{
+    align-items: center;
+}
+.cardWrapper{
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 4rem;
 }

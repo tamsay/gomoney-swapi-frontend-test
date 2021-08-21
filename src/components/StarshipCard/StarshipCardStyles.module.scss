@@ -1,5 +1,5 @@
 .container{
-    width: auto;
+    width: 100%;
     flex-direction: column !important;
 }
 .cardTop{
@@ -8,4 +8,7 @@
     img{
         width: 50%;
     }
+}
+.cardBottom{
+    align-items: flex-start;
 }
