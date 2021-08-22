@@ -35,7 +35,7 @@ const HomePage = () => {
                             <StarshipCard key={index * 5} name={element.name} model={element.model} cargoCapacity={element.cargo_capacity} />
                         )
                     })}</div>)
-                };
+                }
                 <button onClick={()=>ViewAll("starships")}>View All</button>
             </div>
             
@@ -49,7 +49,7 @@ const HomePage = () => {
                             <PlanetCard key={index * 5} name={element.name} temperature={element.climate} population={element.population}/>
                         )
                     })}</div>)
-                };
+                }
                 <button onClick={()=>ViewAll("planets")}>View All</button>
             </div>
             
@@ -63,7 +63,7 @@ const HomePage = () => {
                             <CharacterCard key={index * 5} name={element.name} birthYear={element.birth_year} gender={element.gender} />
                         )
                     })}</div>)
-                };
+                }
                 <button onClick={()=>ViewAll("characters")}>View All</button>
             </div>
         </div>
