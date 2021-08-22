@@ -8,50 +8,84 @@ import StarshipCard from "../../components/StarshipCard/StarshipCard";
 import PlanetCard from "../../components/PlanetCard/PlanetCard";
 import CharacterCard from "../../components/CharacterCard/CharacterCard";
 import Pagination from "../../components/Pagination/Pagination";
+import axios from "axios";
 
 import { SwapiContext } from '../../context';
-
 
 const ViewAll = () => {
     const [currentPage, setCurrentPage] = useState(1);
     let PageSize = 10;
-    const { characters, planets, starships } = useContext(SwapiContext);
+    const { characters, planets, starships, charactersCount,  planetsCount, starshipsCount} = useContext(SwapiContext);
+    console.log(characters, planets, starships)
 
+    const [starshipsData, setStarships] = useState(starships)
+    const [planetsData, setPlanets] = useState(planets)
+    const [charactersData, setCharacters] = useState(characters)
     const [totalCountValue, setTotalCount] = useState(1);
     const [category, setCategory] = useState('');
 
     const search = useLocation().search;
     const searchTerm = queryString.parse(search);
+
     const searchTermResult = searchTerm.category;
 
-    useEffect(() => {    
-            (async () => {
+    useEffect(() => {
+              
             if (searchTermResult === 'starships') {
-                setCategory(searchTermResult)
-                const data = await starships?.count;
-                setTotalCount(data)
+                setCategory(searchTermResult);
+                setTotalCount(starshipsCount as any);
+                setStarships(starships)
             }
-            if (searchTermResult === 'characters') {
-                setCategory(searchTermResult)
-                const data = await characters?.count;
-                setTotalCount(data)
-            }
-            if (searchTermResult === 'planets') {
-                setCategory(searchTermResult)
-                const data = await planets?.count;
-                setTotalCount(data)
-            }
-        })()    
-    })
-    
-    console.log(characters, planets, starships);
+            else if (searchTermResult === 'characters') {
+                setCategory(searchTermResult);
+                setTotalCount(charactersCount as any);
+                setCharacters(starships)
 
+            }
+            else if (searchTermResult === 'planets') {
+                setCategory(searchTermResult);
+                setTotalCount(planetsCount as any);
+                setPlanets(starships)
+
+            }
+         
+    }, [charactersCount, planetsCount, searchTerm.category, searchTermResult, starships, starshipsCount])
+
+    useEffect(() => {
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+
+        if (searchTermResult === 'starships') {
+            fetch(`https://swapi.dev/api/${searchTermResult}/?page=${currentPage}`)
+                .then(resp => resp.json())
+                .then(data => {
+                setStarships(data)
+            })
+        }
+        else if (searchTermResult === 'characters') {
+            fetch(`https://swapi.dev/api/people/?page=${currentPage}`)
+                .then(resp => resp.json())
+                .then(data => {
+                setCharacters(data)
+            })
+        }
+        else if (searchTermResult === 'planets') {
+            fetch(`https://swapi.dev/api/${searchTermResult}/?page=${currentPage}`)
+                .then(resp => resp.json())
+                .then(data => {
+                setPlanets(data)
+            })
+        }
+    }, [PageSize, charactersCount, currentPage, planetsCount, searchTermResult])
+
+
+    
     return (
         <div className={cx(styles.sectionWrapper, "flex-col")}>
             {
                     category === 'starships' ? 
                     (<div className={cx(styles.cardWrapper, "flex-col")}>
-                    {starships?.results.map((element: any, index:number) => {
+                    {starshipsData?.results.map((element: any, index:number) => {
                         return (
                             <StarshipCard key={index * 5} name={element.name} model={element.model} cargoCapacity={element.cargo_capacity} />
                         )
@@ -61,7 +95,7 @@ const ViewAll = () => {
 {
                     category === 'planets' ? 
                     (<div className={cx(styles.cardWrapper, "flex-col")}>
-                    {planets?.results.map((element: any, index:number) => {
+                    {planetsData?.results.map((element: any, index:number) => {
                         return (
                             <PlanetCard key={index * 5} name={element.name} temperature={element.climate} population={element.population}/>
                         )
@@ -72,7 +106,7 @@ const ViewAll = () => {
             {
                     category === 'characters' ? 
                     (<div className={cx(styles.cardWrapper, "flex-col")}>
-                    {characters?.results.map((element: any, index:number) => {
+                    {charactersData?.results.map((element: any, index:number) => {
                         return (
                             <CharacterCard key={index * 5} name={element.name} birthYear={element.birth_year} gender={element.gender} />
                         )

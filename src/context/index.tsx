@@ -5,7 +5,10 @@ import axios from "axios";
 interface swapiContextInterface {
     starships: Record<string, any> | null;
     characters: Record<string, any> | null;
-    planets: Record<string, any> | null;
+  planets: Record<string, any> | null;
+  charactersCount: Record<string, any> | null;
+  planetsCount: Record<string, any> | null;
+  starshipsCount: Record<string, any> | null;
     error: any;
   }
   interface Props {
@@ -17,7 +20,10 @@ const SwapiContextProvider = (props: Props) => {
 
   const [starships, setStarShips] = useState<null | Record<string, any>>(null);
   const [characters, setCharacters] = useState<null | Record<string, any>>(null);
-    const [planets, setPlanets] = useState<null | Record<string, any>>(null);
+  const [planets, setPlanets] = useState<null | Record<string, any>>(null);
+  const [charactersCount, setCharactersCount] = useState<null | Record<string, any>>(null);
+  const [planetsCount, setPlanetsCount] = useState<null | Record<string, any>>(null);
+  const [starshipsCount, setStarShipsCount] = useState<null | Record<string, any>>(null);
   const [error, setError] = useState<any>(null);
     
 
@@ -32,7 +38,10 @@ const SwapiContextProvider = (props: Props) => {
             ]);
             setStarShips(starshipsData.data);
             setCharacters(charactersData.data);
-            setPlanets(planetsData.data);
+          setPlanets(planetsData.data);
+          setStarShipsCount(starshipsData.data.count);
+          setCharactersCount(charactersData.data.count);
+          setPlanetsCount(planetsData.data.count);
         }
         try {
             swapiData();
@@ -42,7 +51,7 @@ const SwapiContextProvider = (props: Props) => {
     }, [])
 
     return (
-        <SwapiContext.Provider value={{ characters, planets, starships, error }}>
+        <SwapiContext.Provider value={{ characters, planets, starships, charactersCount, planetsCount, starshipsCount, error }}>
             {props.children}
         </SwapiContext.Provider>
     )

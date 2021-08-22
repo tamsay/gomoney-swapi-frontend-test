@@ -1,6 +1,5 @@
 import React from 'react';
 import cx from 'classnames';
-// import classnames from 'classnames';
 import { usePagination, DOTS } from '../../hooks/usePagination';
 import styles from './PaginationStyles.module.scss';
 // import './PaginationStyles.scss';
@@ -22,14 +21,13 @@ const Pagination = (props: paginationInterface) => {
     pageSize,
       className,
   } = props;
-console.log(totalCount, currentPage, pageSize, siblingCount);
-  const paginationRange: any = usePagination({
+
+    const paginationRange: any = usePagination({
     currentPage,
     totalCount,
     siblingCount,
     pageSize
   });
-    console.log(paginationRange, '0000')
 
   if (currentPage === 0 || paginationRange.length < 2) {
     return null;
@@ -75,44 +73,7 @@ console.log(totalCount, currentPage, pageSize, siblingCount);
               <div className={cx(styles.arrow, styles.right)} />
       </li>
     </ul>
-    
-        // <ul
-        //   className={classnames('pagination-container', { [className]: className })}
-        // >
-        //   <li
-        //     className={classnames('pagination-item', {
-        //       disabled: currentPage === 1
-        //     })}
-        //     onClick={onPrevious}
-        //   >
-        //     <div className="arrow left" />
-        //   </li>
-        //   {paginationRange.map((pageNumber:any) => {
-        //     if (pageNumber === DOTS) {
-        //       return <li className="pagination-item dots">&#8230;</li>;
-        //     }
-    
-        //     return (
-        //       <li
-        //         className={classnames('pagination-item', {
-        //           selected: pageNumber === currentPage
-        //         })}
-        //         onClick={() => onPageChange(pageNumber)}
-        //       >
-        //         {pageNumber}
-        //       </li>
-        //     );
-        //   })}
-        //   <li
-        //     className={classnames('pagination-item', {
-        //       disabled: currentPage === lastPage
-        //     })}
-        //     onClick={onNext}
-        //   >
-        //     <div className="arrow right" />
-        //   </li>
-        // </ul>
-    
+
   );
 };
 

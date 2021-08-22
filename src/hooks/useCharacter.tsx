@@ -1,18 +1,18 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import {SwapiContext} from "../context/index";
 
-
-export const useCharacter = () => {
-    const [character, setCharacter] = useState<Array<any>>([])
+export const useCharacterCount = () => {
+    const {characters, planets, starships} = useContext(SwapiContext)
+    const [charactersCount, setCharacter] = useState(0)
+    const [planetsCount, setPlanets] = useState(0)
+    const [starshipsCount, setStarships] = useState(0)
 
     useEffect(() => {
-        fetch("https://swapi.dev/api/people/")
-            .then(response => response.json())
-            .then(data => {
-                console.log(data)
-                setCharacter(data);
-            })
-    }, []);
-
-    return character;
+        setCharacter(characters?.count)
+        setPlanets(planets?.count)
+        setStarships(starships?.count)
+    }, [characters?.count, planets?.count, starships?.count]);
+console.log(charactersCount)
+    return ({charactersCount, starshipsCount, planetsCount});
 };
