@@ -1,14 +1,70 @@
 .container{
     width: 100%;
-    flex-direction: column !important;
+    flex-direction: column;
+    margin: 0rem 0rem 1.5rem 0rem;
+    padding: 0rem;
+    background-color:#f2f2f2;
+    border-radius: 0.25rem;
+    border: none;
 }
 .cardTop{
     display: flex;
     justify-content: center;
     img{
-        width: 50%;
+        width: 100%;
+        height: 12rem;
+        object-fit: cover;
+        border-radius: 0.25rem 0.25rem 0rem 0rem;
     }
 }
 .cardBottom{
     align-items: flex-start;
+    padding: 1rem;
+    h5{
+        font-size: 1.125rem;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+    }
+    p{
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+    .label{
+        font-size: 0.75rem;
+        font-weight: 450;
+        margin: 0rem;
+        padding: 0rem;
+    }
 }
+.labelWrapper {
+    margin-bottom:0.25rem;
+    padding: 0rem;
+    display: flex;
+    align-items: flex-end;
+}
+.tag {
+    background: #cccccc;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+    color: #fff;
+    padding: 2px 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-self: flex-end;
+  }
+  .tag-teal {
+    background-color: #47bcd4;
+  }
+  .tag-purple {
+    background-color: #5e76bf;
+  }
+  .tag-blue {
+    background-color: #092780;
+  }
+  .icons{
+    color: #092780;
+    margin: 0rem 0.125rem 0rem 0rem;
+  }

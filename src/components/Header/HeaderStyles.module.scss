@@ -3,9 +3,9 @@ $headerIntroText: #CFCFD0;
 
 .container{
     background-image: url(../../assets/hero-banner.jpg);
-    height: 20%;
+    height: 25%;
     width: 100%;
-    padding: 0.5rem 0.5rem 1.5rem 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;
 }
 
 .page-header{
@@ -13,7 +13,7 @@ $headerIntroText: #CFCFD0;
     // width: fit-content;
     width: 100%;
     justify-content: space-between;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
 
     .logo-div{
         align-items: center;
@@ -29,19 +29,17 @@ $headerIntroText: #CFCFD0;
 
     .page-header-text{
         color: $pageHeaderText;
-        font-size: 1.125rem;
+        font-size: 1.25rem;
         font-weight: 800;
         width: 50%;
         text-align: left;
         margin: 0rem;
     }
-
 }
-
 .header-intro{
     font-size: 1rem;
     font-weight: 800;
     color: $headerIntroText;
     text-align: center;
-    margin: 1.5rem 0rem 1rem 0rem;
+    margin: 1.125rem 0rem 1rem 0rem;
 }

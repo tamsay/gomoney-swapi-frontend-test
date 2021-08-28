@@ -1,17 +1,24 @@
-import React from 'react';
+import {useEffect, useState} from 'react';
 import styles from './ReadMoreButtonStyles.module.scss';
 import cx from 'classnames';
+import { Link } from 'react-router-dom';
+import { Icon } from '@iconify/react';
 
 const ReadMoreButton = (props: Record<string, any>) => {
-    const {cardName, category} = props;
-    const handleClick = () => {
-        localStorage.setItem("cardName", cardName);
-        localStorage.setItem("category", category);
-    }
+    const { url, category, imageId } = props;
+    const [id, setId] = useState("");
+
+    useEffect(() => {
+        let itemId = url.match(/\d+/);
+        setId(itemId);
+    },[url])
+
     return (
-        <button onClick={handleClick} className={cx(styles.container)}>
-            <a href="/details-page">Read More</a>
-        </button>
+        <Link to={`/details-page/?category=${category}&id=${id}&imageId=${imageId}`
+} className={cx(styles.container)}>
+            Read More
+            <Icon icon="flat-color-icons:reading" className={cx(styles.icons)}/>
+        </Link>
     )
 }
 

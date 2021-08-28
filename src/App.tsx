@@ -5,12 +5,14 @@ import {
   Route,
 } from "react-router-dom";
 import './App.css';
-import Header from '../src/components/Header/Header';
+// import Header from '../src/components/Header/Header';
 import HomePage from './Pages/HomePage/HomePage';
 import DetailsPage from './Pages/DetailsPage/DetailsPage';
 import ViewAll from './Pages/ViewAll/ViewAll';
+import SearchResult from './Pages/SearchResult/SearchResult';
 
 import SwapiContextProvider from '../src/context/index';
+import FilterCharacters from './Pages/FilterCharacters/FilterCharacters';
 
 function App() {
 
@@ -18,7 +20,7 @@ function App() {
     <div className="App">
       <SwapiContextProvider>
         <Router>
-      <Header />
+      {/* <Header /> */}
           <Switch>
 
               <Route exact path="/">
@@ -30,7 +32,12 @@ function App() {
             <Route exact path="/view-all/">
               <ViewAll />
             </Route>
-
+            <Route exact path="/search/">
+              <SearchResult />
+            </Route>
+            <Route exact path="/filter-characters/">
+              <FilterCharacters />
+            </Route>
           </Switch>
         </Router>
         

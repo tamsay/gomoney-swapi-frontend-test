@@ -1,0 +1,19 @@
+.container{
+
+    button{
+        outline: none;
+        border: none;
+        padding: 0.5rem 1rem;
+        margin: 0rem;
+        display: flex;
+        align-items: center;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        font-weight: 450;
+
+        .icon{
+            color: black;
+            margin-right: 0.25rem;
+        }
+    }
+}

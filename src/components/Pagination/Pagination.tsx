@@ -1,8 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
+import {useHistory, useLocation} from 'react-router-dom';
 import { usePagination, DOTS } from '../../hooks/usePagination';
 import styles from './PaginationStyles.module.scss';
-// import './PaginationStyles.scss';
 
 interface paginationInterface {
     onPageChange: any;
@@ -11,8 +11,12 @@ interface paginationInterface {
     currentPage: number;
     pageSize: number;
     className: string;
+    category: string;
 }
 const Pagination = (props: paginationInterface) => {
+    const history = useHistory();
+    const location = useLocation();
+
   const {
     onPageChange,
     totalCount,
@@ -20,6 +24,7 @@ const Pagination = (props: paginationInterface) => {
     currentPage,
     pageSize,
       className,
+      category
   } = props;
 
     const paginationRange: any = usePagination({
@@ -34,11 +39,14 @@ const Pagination = (props: paginationInterface) => {
   }
 
   const onNext = () => {
-    onPageChange(currentPage + 1);
+      onPageChange(currentPage + 1);
+      history.push(`${location.pathname}?category=${category}&page=${currentPage + 1}`)
   };
 
   const onPrevious = () => {
-    onPageChange(currentPage - 1);
+      onPageChange(currentPage - 1);
+      history.push(`${location.pathname}?category=${category}&page=${currentPage - 1}`)
+      
   };
 
   let lastPage = paginationRange[paginationRange.length - 1];
@@ -52,15 +60,15 @@ const Pagination = (props: paginationInterface) => {
       >
               <div className={cx(styles.arrow, styles.left)} />
       </li>
-      {paginationRange.map((pageNumber:any) => {
+      {paginationRange.map((pageNumber:any, index:number) => {
         if (pageNumber === DOTS) {
-            return <li className={cx(styles["pagination-item"], styles.dots)}>&#8230;</li>;
+            return <li  className={cx(styles["pagination-item"], styles.dots)}>&#8230;</li>;
         }
 
         return (
-          <li
+          <li key={index*2}
             className={pageNumber === currentPage ? cx(styles.selected, styles['pagination-item']) : cx(styles['pagination-item'])}
-            onClick={() => onPageChange(pageNumber)}
+                onClick={() => { onPageChange(pageNumber); history.push(`${location.pathname}?category=${category}&page=${pageNumber}`) }}
           >
             {pageNumber}
           </li>
