@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {useState, useEffect} from 'react';
 import styles from './FilterCharactersStyles.module.scss';
 import cx from 'classnames';
