@@ -2,7 +2,7 @@
   padding: 0rem;
 }
 
-.cardWrapper{
+.selectWrapper{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +22,37 @@
         }
     }
 
+}
+
+@media screen and (min-width: 768px){
+  .container{
+      padding: 0rem 0rem;
+      width: 100%;
+  }
+  .sectionWrapper{
+      align-items: center;
+      margin: 1.5rem 0rem;
+      padding: 0rem 1rem;
+  }
+  .cardWrapper{
+      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 2rem;
+      padding: 0rem 1rem;
+  }
+  .outerPlanetWrapper{
+      width: 100%;
+      display: flex;
+      overflow-x: scroll;
+      margin: 0rem 0rem 1rem 0rem;
+  }
+  .planetWrapper{
+    width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+  }
 }
 
 @media screen and (min-width:991px){

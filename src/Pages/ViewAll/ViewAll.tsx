@@ -110,7 +110,7 @@ const ViewAll = () => {
 
             {
                     category === 'characters' ? 
-                    (<div className={cx(styles.cardWrapper, "flex-col")}>
+                    (<div className={cx(styles.sectionWrapper, "flex-col")}>
                         <SectionHeader headerText="All Characters" />
                         <div className={cx(styles.selectWrapper, "flex-col")}>
                         <label className={cx(styles.labelWrapper, "flex-row")}>

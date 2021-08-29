@@ -90,7 +90,7 @@ const FilterCharacters = () => {
 
             {
                 showDiv ? 
-                    <div className={cx(styles.cardWrapper, "flex-col")}>
+                    <div className={cx(styles.sectionWrapper, "flex-col")}>
                         <SectionHeader headerText="Filtered Result: Characters" />
                         <div className={cx(styles.selectWrapper, "flex-col")}>
                         <label className={cx(styles.labelWrapper, "flex-row")}>

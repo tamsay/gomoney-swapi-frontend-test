@@ -159,7 +159,11 @@
             font-size: 1rem;
           }
     }
-
+    @media screen and (min-width:768px){
+      .container{
+        width:14.5rem;    
+    }
+    }
     @media screen and (min-width:991px){
       .container{
         width:20.5rem;    

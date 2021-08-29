@@ -54,17 +54,12 @@
     border-radius: 50px;
     font-size: 12px;
     margin: 0;
+    font-weight: 600;
     color: #fff;
     padding: 2px 10px;
     text-transform: uppercase;
     cursor: pointer;
     align-self: flex-end;
-  }
-  .tag-teal {
-    background-color: #47bcd4;
-  }
-  .tag-purple {
-    background-color: #5e76bf;
   }
   .tag-pink {
     background-color: #cd5b9f;
@@ -72,6 +67,79 @@
   .icons{
     color: #cd5b9f;
     margin: 0rem 0.125rem 0rem 0rem;
+  }
+
+  @media screen and (min-width:768px){
+    .container{
+        width: 100%;
+        flex-direction: column;
+        margin: 0rem 0rem 1.5rem 0rem;
+        padding: 0rem;
+        background-color:#f2f2f2;
+        border-radius: 0.25rem;
+        border: none;
+    
+    }
+    .cardTop{
+        display: flex;
+        justify-content: center;
+        background-image: url(../../assets/hero-banner.jpg);
+    
+        img{
+            width: 100%;
+            height: 12rem;
+            object-fit: cover;
+            border-radius: 0.25rem 0.25rem 0rem 0rem;
+        }
+    }
+    .cardBottom{
+        align-items: flex-start;
+        padding: 1rem;
+        h5{
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin-bottom: 0.75rem;
+        }
+        p{
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .label{
+            font-size: 0.75rem;
+            font-weight: 450;
+            margin: 0rem;
+            padding: 0rem;
+        }
+    }
+    .labelWrapper {
+        margin-bottom:0.25rem;
+        padding: 0rem;
+        display: flex;
+        align-items: flex-end;
+    }
+    .gender{
+        text-transform: capitalize;
+    }
+    .tag {
+        background: #cccccc;
+        border-radius: 50px;
+        font-size: 12px;
+        margin: 0;
+        font-weight: 600;
+        color: #fff;
+        padding: 2px 10px;
+        text-transform: uppercase;
+        cursor: pointer;
+        align-self: flex-end;
+      }
+      .tag-pink {
+        background-color: #cd5b9f;
+      }
+      .icons{
+        color: #cd5b9f;
+        margin: 0rem 0.125rem 0rem 0rem;
+      }
   }
 
   @media screen and (min-width:991px){
@@ -93,7 +161,6 @@
         img{
             width: 100%;
             height: 17.5rem;
-            // height: fit-content;
             object-fit: cover;
             object-position: center;
             border-radius: 0.25rem 0rem 0rem 0.25rem;
@@ -127,32 +194,7 @@
         display: flex;
         align-items: flex-end;
     }
-    .gender{
-        text-transform: capitalize;
-    }
-    .tag {
-        background: #cccccc;
-        border-radius: 50px;
-        font-size: 12px;
-        margin: 0;
-        font-weight: 600;
-        color: #fff;
-        padding: 2px 10px;
-        text-transform: uppercase;
-        cursor: pointer;
-        align-self: flex-end;
-      }
-      .tag-teal {
-        background-color: #47bcd4;
-      }
-      .tag-red {
-        background-color: #d3312c;
-      }
-      .tag-pink {
-        background-color: #cd5b9f;
-      }
       .icons{
-        color: #cd5b9f;
         margin: 0rem 0.25rem 0rem 0rem;
         font-size: 1.125rem;
       }

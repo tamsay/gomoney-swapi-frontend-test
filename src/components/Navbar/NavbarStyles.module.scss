@@ -27,7 +27,29 @@
         }
         a:hover{
             font-weight: bold;
-            transform: translateX(5)
+        }
+    }
+}
+
+@media screen and (min-width:768px){
+    .container{
+        padding: 0.75rem;
+    
+        .logo-div{
+            width: 10%;
+    
+            .logo{
+                width: 100%;
+            }
+        }
+    
+        .navLinks{
+            font-weight: bold;
+    
+            a{
+                margin: 0rem 0.5rem;
+                font-size: 1rem;
+            }
         }
     }
 }
@@ -46,14 +68,13 @@
 
     .navLinks{
         font-weight: bold;
-        margin-left: auto;
         a{
             margin: 0rem 0.75rem;
             font-size: 1.25rem;
         }
         a:hover{
             font-weight: bold;
-            transform: translateX(5)
+            transform: scale(1.05);
         }
     }
     }
