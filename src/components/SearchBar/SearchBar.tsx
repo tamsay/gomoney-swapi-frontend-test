@@ -12,11 +12,19 @@ const SearchBar = (props: Record<string, any>) => {
     const [searchQuery, setSearchQuery] = useState("");
 
     const handleSearch = () => {
+        if (searchQuery !== "") {
         history.push(`/search/?type=${type}&searchQuery=${searchQuery}`)
+        }
+        else {
+            alert("Enter a search item")
+        }
     }
     const handleKeyDown = (event: { key: string; }) => {
-        if (event.key === 'Enter') {
+        if (event.key === 'Enter' && searchQuery !== "") {
             history.push(`/search/?type=${type}&searchQuery=${searchQuery}`)
+        }
+        else if (event.key === "Enter") {
+            alert("Enter a search item")
         }
       }
 

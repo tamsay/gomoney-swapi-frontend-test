@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react';
 
 const CharacterCard = (props: Record<string, any>) => {
     const { name, birthYear, gender, url } = props;
-    const imageSrc = Math.ceil((Math.random() * 3) + 1);
+    const imageSrc = Math.ceil((Math.random() * 4) + 0);
     return (
         <div className={cx(styles.container)}>
             <div className={cx(styles.cardTop)}>
@@ -14,7 +14,7 @@ const CharacterCard = (props: Record<string, any>) => {
             </div>
 
             <div className={cx(styles.cardBottom, "flex-col")}>
-            <span className={cx(styles.tag, styles["tag-blue"])}>Characters</span>
+            <span className={cx(styles.tag, styles["tag-pink"])}>Characters</span>
 
                 <div className={cx(styles.labelWrapper)}>
                 <Icon icon="bi:person-circle" className={cx(styles.icons)} />
@@ -32,7 +32,7 @@ const CharacterCard = (props: Record<string, any>) => {
                 <Icon icon="map:unisex" className={cx(styles.icons)} />
                 <small className={cx(styles.label)}>Gender</small>
                 </div>
-                <p className={cx(styles.gender)}>{gender}</p>
+                <p className={cx(styles.gender)}>{gender.toLowerCase() === "n/a" ? "Robot" : gender}</p>
                 <ReadMoreButton url={url} category='people'imageId={imageSrc} />
             </div>
         </div>

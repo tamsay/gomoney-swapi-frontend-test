@@ -2,7 +2,6 @@
     justify-content: center;
     align-items: flex-start;
     height: 100%;
-    padding-bottom: 3rem;
 }
 .content{
     width: 100%;
@@ -12,36 +11,45 @@
     width: 100%;
     position: relative;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    .heroImage{
-        width: 100%;
-        // opacity: 0.85;
+
+    .imageWrapper{
+
+        .heroImage{
+            width: 100%;
+        }
     }
-    .nameDiv{
-        color: white;
-        font-weight: bold;
+   
+    .nameNavDiv{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         position: absolute;
         bottom: 0;
-        left: 0;
-    }
-    .navigationDiv{
-        color: white;
-        position: absolute;
-        top: 0;
-        right: 0;
+
+        .nameDiv{
+            color: white;
+            font-weight: bold;
+        }
+        .navigationDiv{
+            color: white;
+        }
     }
 }
 
 .otherInfoSection{
-    padding: 1rem 0.5rem;
+    padding: 1rem 1.5rem;
 
     .cardWrapper{
         align-items: flex-start;
         padding: 0.5rem 0rem 0.5rem 1rem;
-        margin: 1rem 0rem 0rem 0rem;
-        border-radius: 0.25rem;
-        border: 1px solid black;
+        margin: 1.5rem 0rem 0rem 0rem;
+        border-radius: 0rem 0.25rem 0rem 0.25rem;
+        border-color: black;
+        box-shadow: 0 0 1rem rgba(85, 80, 80, 0.25);
+        transition: transform 1s ease-in-out;
 
         .labelWrapper{
             margin-bottom:0.25rem;
@@ -51,6 +59,7 @@
             .icons{
                 margin: 0rem 0.125rem 0rem 0rem;
                 font-size: 1rem;
+                color: #092780;
             }
             .label{
                 font-size: 0.75rem;
@@ -58,6 +67,7 @@
                 font-weight: 450;
                 margin: 0rem;
                 padding: 0rem;
+                color: #092780;
             }
         }
         p{
@@ -69,11 +79,157 @@
 
     }
 
+    .cardWrapper:hover {
+        transform: scale(1.025);
+        animation-duration: inherit;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+        animation-timing-function: ease-in-out;
+        cursor: pointer;
+      }
 }
 .backButton{
     display: flex;
     justify-content: flex-end;
-    padding: 0rem 0.5rem 0rem 0rem;
+    padding: 0rem 1.5rem 0rem 0rem;
     width: 100%;
     margin-top: 1rem;
 }
+
+@media screen and (min-width:991px){
+    .container{
+        // justify-content: center;
+        // align-items: flex-start;
+        height: 100vh;
+    }
+    .headerWrapper{
+        height: 10vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0rem;
+    }
+    .content{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        height: 90vh;
+    }
+    .imageHeaderSection{
+        background-image: url(../../assets/hero-banner.jpg);
+        width: 75%;
+        position: relative;
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0rem 0rem;
+        margin: 0rem;
+
+        .imageWrapper{
+            width: 100%;
+            display: flex;
+            height: 100%;
+
+            .heroImage{
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+       
+        .nameNavDiv{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            bottom: 20px;
+            padding: 0rem 1rem;
+
+    
+            .nameDiv{
+                color: white;
+                font-weight: bold;
+                font-size: 3rem;
+
+                .icons{
+                    font-size: 4rem;
+                    margin: 0rem 2rem;
+                }
+            }
+            .navigationDiv{
+                color: white;
+
+                .icons{
+                    margin: 0rem 1rem;
+                    font-size: 3rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+  
+    }
+    
+    .otherInfoSection{
+        padding: 1rem 1.5rem;
+        width: 25%;
+        height: 100%;
+        overflow-y: auto;
+        margin: 0rem;
+        // background-color:red;
+    
+        .cardWrapper{
+            align-items: flex-start;
+            padding: 0.5rem 0rem 0.5rem 1rem;
+            margin: 1rem 0rem 1rem 0rem;
+            border-radius: 0rem 0.25rem 0rem 0.25rem;
+            border-color: black;
+            box-shadow: 0 0 1rem rgba(85, 80, 80, 0.25);
+            transition: transform 1s ease-in-out;
+    
+            .labelWrapper{
+                margin-bottom:0.25rem;
+                padding: 0rem;
+                display: flex;
+                align-items: flex-end;
+                .icons{
+                    margin: 0rem 0.125rem 0rem 0rem;
+                    font-size: 1rem;
+                    color: #092780;
+                }
+                .label{
+                    font-size: 0.75rem;
+                    line-height: 1;
+                    font-weight: 450;
+                    margin: 0rem;
+                    padding: 0rem;
+                    color: #092780;
+                }
+            }
+            p{
+                text-transform: capitalize;
+                font-size: 1rem;
+                font-weight: 600;
+                margin: 0rem;
+            }
+    
+        }
+    
+        .cardWrapper:hover {
+            transform: scale(1.025);
+            animation-duration: inherit;
+            animation-iteration-count: infinite;
+            animation-direction: normal;
+            animation-timing-function: ease-in-out;
+            cursor: pointer;
+          }
+    }
+    .backButton{
+        display: flex;
+        justify-content: flex-end;
+        padding: 0rem 0rem 0rem 0rem;
+        width: 100%;
+        margin-top: 1rem;
+    }

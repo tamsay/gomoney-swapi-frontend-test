@@ -62,7 +62,7 @@ const Pagination = (props: paginationInterface) => {
       </li>
       {paginationRange.map((pageNumber:any, index:number) => {
         if (pageNumber === DOTS) {
-            return <li  className={cx(styles["pagination-item"], styles.dots)}>&#8230;</li>;
+            return <li key={index*5} className={cx(styles["pagination-item"], styles.dots)}>&#8230;</li>;
         }
 
         return (

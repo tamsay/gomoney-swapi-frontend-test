@@ -6,7 +6,7 @@ import { Icon } from '@iconify/react';
 
 const StarshipCard = (props: Record<string, any>) => {
     const { name, model, cargoCapacity, url } = props;
-    const imageSrc = Math.ceil((Math.random() * 5) + 1);
+    const imageSrc = Math.ceil((Math.random() * 6) + 0);
 
     return (
         <div className={cx(styles.container)}>

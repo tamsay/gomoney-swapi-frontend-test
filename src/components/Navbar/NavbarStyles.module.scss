@@ -1,12 +1,66 @@
 .container{
     width: 100%;
+    // position: fixed;
+    // top: 0;
+    background-image: url(../../assets/hero-banner.jpg);
+    padding: 0.5rem;
+    // z-index: 10;
+    // height: 7.5%;
+    display: flex;
+    align-items: center;
+
 
     .logo-div{
         width: 15%;
-        margin-bottom: 1rem;
+        margin: 0rem;
 
         .logo{
             width: 100%;
         }
     }
+
+    .navLinks{
+        font-weight: bold;
+        margin-left: auto;
+
+        a{
+            color: white;
+            margin: 0rem 0.25rem;
+            text-decoration: none;
+        }
+        a:hover{
+            font-weight: bold;
+            transform: translateX(5)
+        }
+    }
+}
+
+@media screen and (min-width:991px){
+    .container{
+
+    .logo-div{
+        width: 7.5%;
+        margin: 0rem;
+
+        .logo{
+            width: 100%;
+        }
+    }
+
+    .navLinks{
+        font-weight: bold;
+        margin-left: auto;
+        a{
+            color: white;
+            margin: 0rem 0.75rem;
+            text-decoration: none;
+            font-size: 1.25rem;
+        }
+        a:hover{
+            font-weight: bold;
+            transform: translateX(5)
+        }
+    }
+    }
+    
 }

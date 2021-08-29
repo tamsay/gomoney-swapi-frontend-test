@@ -7,7 +7,7 @@ import { Icon } from '@iconify/react';
 
 const PlanetCard = (props: Record<string, any>) => {
     const { name, temperature, population, url } = props;
-    const imageSrc = Math.ceil((Math.random() * 2) + 1)
+    const imageSrc = Math.ceil((Math.random() * 3) + 0)
 
     return (
             <div className={cx(styles.container, styles["content-wrapper"])}>

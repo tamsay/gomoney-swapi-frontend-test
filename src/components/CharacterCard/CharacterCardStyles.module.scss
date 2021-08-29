@@ -6,10 +6,13 @@
     background-color:#f2f2f2;
     border-radius: 0.25rem;
     border: none;
+
 }
 .cardTop{
     display: flex;
     justify-content: center;
+    background-image: url(../../assets/hero-banner.jpg);
+
     img{
         width: 100%;
         height: 12rem;
@@ -73,10 +76,10 @@
 
   @media screen and (min-width:991px){
     .container{
-        width: 100%;
+        width: 45%;
         display: flex;
         flex-direction: row;
-        margin: 0rem 0rem 1.5rem 0rem;
+        margin: 0rem 0rem 2.5rem 0rem;
         padding: 0rem;
         background-color:#f2f2f2;
         border-radius: 0.25rem;
@@ -89,7 +92,7 @@
         width: 50%;
         img{
             width: 100%;
-            // height: 100%;
+            height: 17.5rem;
             // height: fit-content;
             object-fit: cover;
             object-position: center;
@@ -98,27 +101,28 @@
     }
     .cardBottom{
         align-items: flex-start;
-        padding: 0.5rem 0.5rem;
+        justify-content: space-between;
+        padding: 1rem;
         width: 50%;
         h5{
-            font-size: 1.0625rem;
+            font-size: 1.125rem;
             font-weight: bold;
             margin-bottom: 0.625rem;
         }
         p{
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
         }
         .label{
-            font-size: 0.75rem;
+            font-size: 0.875rem;
             font-weight: 450;
             margin: 0rem;
             padding: 0rem;
         }
     }
     .labelWrapper {
-        margin-bottom:0.25rem;
+        margin-bottom:0.125rem;
         padding: 0rem;
         display: flex;
         align-items: flex-end;
@@ -144,11 +148,12 @@
       .tag-red {
         background-color: #d3312c;
       }
-      .tag-blue {
-        background-color: #092780;
+      .tag-pink {
+        background-color: #cd5b9f;
       }
       .icons{
-        color: #092780;
-        margin: 0rem 0.125rem 0rem 0rem;
+        color: #cd5b9f;
+        margin: 0rem 0.25rem 0rem 0rem;
+        font-size: 1.125rem;
       }
   }

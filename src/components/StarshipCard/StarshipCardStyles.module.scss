@@ -10,6 +10,7 @@
 .cardTop{
     display: flex;
     justify-content: center;
+    background-image: url(../../assets/hero-banner.jpg);
     img{
         width: 100%;
         height: 12rem;
@@ -67,4 +68,21 @@
   .icons{
     color: #092780;
     margin: 0rem 0.125rem 0rem 0rem;
+  }
+
+  @media screen and (min-width:991px){
+    .container{
+      width: 27%;    
+      margin: 2rem 1rem;
+  }
+  .cardTop{
+    display: flex;
+    justify-content: center;
+    img{
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
+        border-radius: 0.25rem 0.25rem 0rem 0rem;
+    }
+}
   }

@@ -49,30 +49,34 @@ const DetailsPage = () => {
 
     return (
         <div className={cx(styles.container, "flex-col")}>
+            <div className={cx(styles.headerWrapper)}>
             <Header displaySearch={false} displayHeaderHero={false} />
+            </div>
             {data ?
                 <div className={cx(styles.content)}>
                     <div className={cx(styles.imageHeaderSection)}>
+                        <div className={cx(styles.imageWrapper)}>
                     <img src={`/${imageCategory}-${imageId}.jpg`} alt="card-img" className={cx(styles.heroImage)}/>
-                        <div className={cx(styles.nameDiv)}>
-                            {data?.name}
+                        </div>
+
+                        <div className={cx(styles.nameNavDiv)}>
+                            <div className={cx(styles.nameDiv)}>
+                            <Icon icon="ls:bracketleft" color="white" className={cx(styles.icons)}/>
+
+                                {data?.name}
+                                
+                                <Icon icon="ls:bracketright" color="white" className={cx(styles.icons)}/>
+
                         </div>
                         <div className={cx(styles.navigationDiv)}>
-                            Navigation Here
+                            <Icon className={cx(styles.icons)}  icon="ant-design:left-circle-outlined" color="white" />
+                            <Icon className={cx(styles.icons)} icon="ant-design:left-circle-outlined" color="white" hFlip={true} />
                         </div>
+                        </div>
+                        
                     </div>
 
                     <div className={cx(styles.otherInfoSection)}>
-
-                        {/* {data?.name ? <div className={cx(styles.cardWrapper)}>
-                            <div className={cx(styles.labelWrapper)}>
-                                <Icon icon="bi:person-circle" className={cx(styles.icons)} />
-                                <small className={cx(styles.label)}>Name</small>
-                            </div>
-                            <p>{data?.name}</p>
-                        </div> : ""} */}
-                        
-
                         {data.birth_year ? <div className={cx(styles.cardWrapper)}>
                             <div className={cx(styles.labelWrapper)}>
                                 <Icon icon="iwwa:year" className={cx(styles.icons)} />
@@ -105,7 +109,7 @@ const DetailsPage = () => {
                                 <Icon icon="noto:man-light-skin-tone-red-hair" className={cx(styles.icons)} />
                                 <small className={cx(styles.label)}>Hair Color</small>
                             </div>
-                            <p>{data?.hair_color || ""}</p> 
+                            <p>{data?.hair_color.toLowerCase() === 'n/a' ? "Not Available" : data?.hair_color}</p> 
                
                         </div> : ""}
 
@@ -114,7 +118,7 @@ const DetailsPage = () => {
                                 <Icon icon="ion:body" className={cx(styles.icons)} />
                                 <small className={cx(styles.label)}>Skin Color</small>
                             </div>
-                            <p>{data?.skin_color || ""}</p> 
+                            <p>{data?.skin_color.toLowerCase() === 'n/a' ? "Not Available" : data?.skin_color}</p> 
                
                         </div> : ""}
 
@@ -123,7 +127,7 @@ const DetailsPage = () => {
                                 <Icon icon="noto:eye" className={cx(styles.icons)} />
                                 <small className={cx(styles.label)}>Eye Color</small>
                             </div>
-                            <p>{data?.eye_color || ""}</p> 
+                            <p>{data?.eye_color.toLowerCase() === 'n/a' ? "Not Available" : data?.eye_color}</p> 
                
                         </div> : ""}
 
@@ -132,7 +136,7 @@ const DetailsPage = () => {
                                 <Icon icon="map:unisex" className={cx(styles.icons)} />
                                 <small className={cx(styles.label)}>Gender</small>
                             </div>
-                            <p>{data?.gender || ""}</p> 
+                            <p>{data?.gender.toLowerCase() === 'n/a' ? "Robot" : data?.gender}</p> 
                
                         </div> : ""}
 
@@ -177,7 +181,7 @@ const DetailsPage = () => {
                                 <Icon icon="ant-design:fall-outlined" className={cx(styles.icons)} />
                                 <small className={cx(styles.label)}>Gravity</small>
                             </div>
-                            <p>{data?.gravity || ""}</p> 
+                            <p>{data?.gravity.toLowerCase() === 'n/a' ? "Not Available" : data?.gravity}</p> 
                
                         </div> : ""}
 
@@ -313,6 +317,9 @@ const DetailsPage = () => {
                         </div> : ""} */}
                         
 
+                        <div className={cx(styles.backButton)}>
+                <BackButton />
+            </div>
                      
 
                     </div>
@@ -320,9 +327,7 @@ const DetailsPage = () => {
                 
             </div> : <Spinner height="75" type="BallTriangle" />}
             
-            <div className={cx(styles.backButton)}>
-                <BackButton />
-            </div>
+         
         </div>
     )
 }

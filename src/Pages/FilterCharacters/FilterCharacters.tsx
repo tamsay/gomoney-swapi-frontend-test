@@ -4,59 +4,36 @@ import cx from 'classnames';
 import queryString from 'query-string';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useAllCharacters } from '../../hooks/useAllCharacters';
-// import { useAllPlanets } from '../../hooks/useAllPlanets';
-// import { useAllStarships } from '../../hooks/useAllStarships';
 import Header from '../../components/Header/Header';
 import Spinner from '../../components/Spinner/Spinner';
-// import StarshipCard from "../../components/StarshipCard/StarshipCard";
-// import PlanetCard from "../../components/PlanetCard/PlanetCard";
 import CharacterCard from "../../components/CharacterCard/CharacterCard";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
+import Pagination from "../../components/Pagination/Pagination";
 
 
 const FilterCharacters = () => {
+    let PageSize = 10;
     const history = useHistory();
     const search = useLocation().search;
     const searchTerm = queryString.parse(search);
     let filterQuery = searchTerm.filterQuery as string;
-    // const searchQuery = searchTerm.searchQuery as string;
 
     const [allCharacters, setAllCharacters] = useState<string[]>([])
-    // const [allPlanets, setAllPlanets] = useState([])
-    // const [allStarships, setAllStarships] = useState([])
+    
     const allCharactersArray: any = useAllCharacters()
-    // const allPlanetsArray: any = useAllPlanets()
-    // const allStarshipsArray: any = useAllStarships()
-
-    // const [planetsSpinner, setPlanetsSpinner] = useState(true);
-    // const [starshipsSpinner, setStarshipsSpinner] = useState(true);
-
-    // const [showCharactersDiv, setShowCharactersDiv] = useState(false);
-    // const [showPlanetsDiv, setShowPlanetsDiv] = useState(false);
-    // const [showStarshipsDiv, setShowStarshipsDiv] = useState(false);
+    
     const [showDiv, setShowDiv] = useState(false);
 
     const [genderIcon, setGenderIcon] = useState("");
     const [genderValue, setGenderValue] = useState(filterQuery)
 
+    const pageResult = Number(searchTerm.page);
+    const [totalCountValue, setTotalCount] = useState(1);
+    const [category, setCategory] = useState('');
+    const [currentPage, setCurrentPage] = useState(pageResult);
 
 
     const getFilteredArray = (arrayData:string[], query:string) => {
-        // let filtered: any = [];
-        //         arrayData.map((element: any) => {
-        //             // if (element.gender && element.gender.toLowerCase().includes(query.toLowerCase())) {
-        //             //  filtered.push(element);
-        //             // }
-        //             if (element.gender.toLowerCase() === query.toLowerCase()) {
-        //                 filtered.push(element);
-        //                 setGenderIcon(query)
-        //             }
-        //             else if  (element.gender.toLowerCase() === query.toLowerCase()) {
-        //                 filtered.push(element);
-        //                 setGenderIcon(query)
-        //                }
-        //             return true;
-        //         });
         let filtered = arrayData.filter((element: any) => {
            return element.gender?.toLowerCase() === query.toLowerCase()
         });
@@ -97,15 +74,6 @@ const FilterCharacters = () => {
                 break;
         }
 
-        // setShowDiv(true)
-        // let filteredCharacters = allCharactersArray.filter((element: any) => {
-        //     console.log(element.gender, element)
-        //     return element.gender ? element?.gender.toLowerCase() === filterQuery.toLowerCase() : "";
-        // });
-        // setGenderIcon(filterQuery);
-        // setAllCharacters(filteredCharacters);
-        // setCharactersSpinner(false)
-
     }, [allCharactersArray, filterQuery])
 
     console.log(genderIcon)
@@ -121,7 +89,7 @@ const FilterCharacters = () => {
 
             {
                 showDiv ? 
-                    <div className={cx(styles.sectionWrapper, "flex-col")}>
+                    <div className={cx(styles.cardWrapper, "flex-col")}>
                         <SectionHeader headerText="Filtered Result: Characters" />
                         <div className={cx(styles.selectWrapper, "flex-col")}>
                         <label className={cx(styles.labelWrapper, "flex-row")}>
@@ -146,6 +114,14 @@ const FilterCharacters = () => {
                     }
                 </div> : ""
             }
+            <Pagination
+                className={cx(styles["pagination-bar"])}
+        currentPage={currentPage}
+        totalCount={totalCountValue}
+        pageSize={PageSize}
+                onPageChange={(page: number) => setCurrentPage(page)}
+                category={category}
+      />
         </div>
     )
 }

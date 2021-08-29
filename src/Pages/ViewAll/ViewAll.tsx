@@ -112,11 +112,11 @@ const ViewAll = () => {
                     category === 'characters' ? 
                     (<div className={cx(styles.cardWrapper, "flex-col")}>
                         <SectionHeader headerText="All Characters" />
-                        <div className={cx(styles.selectWrapper)}>
-                        <label>
+                        <div className={cx(styles.selectWrapper, "flex-col")}>
+                        <label className={cx(styles.labelWrapper, "flex-row")}>
           Filter by Gender:
                                 <select value={genderValue} onChange={(e)=>handleChange(e)}>
-            <option value="all" >All</option>
+            <option value="all">All</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="hermaphrodite">Hermaphrodite</option>

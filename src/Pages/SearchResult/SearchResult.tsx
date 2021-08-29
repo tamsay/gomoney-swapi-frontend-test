@@ -55,21 +55,21 @@ const SearchResult = () => {
                 setShowCharactersDiv(true)
                 let filteredCharacters = getFilteredArray(allCharactersArray, searchQuery);
                 setAllCharacters(filteredCharacters);
-                setCharactersSpinner(false)
+                allCharactersArray.length === 0 ? setCharactersSpinner(true) : setCharactersSpinner(false); 
                 break;
             
             case 'planets':
                 setShowPlanetsDiv(true)
                 let filteredPlanets = getFilteredArray(allPlanetsArray, searchQuery);
                 setAllPlanets(filteredPlanets);
-                setPlanetsSpinner(false);
+                allPlanetsArray.length === 0 ? setPlanetsSpinner(true) : setPlanetsSpinner(false);
                 break;
             
             case 'starships':
                 setShowStarshipsDiv(true)
                 let filteredStarships = getFilteredArray(allStarshipsArray, searchQuery);
                 setAllStarships(filteredStarships);
-                setStarshipsSpinner(false);
+                allStarshipsArray.length === 0 ? setStarshipsSpinner(true) : setStarshipsSpinner(false);
                 break;
         
             default:
@@ -77,9 +77,10 @@ const SearchResult = () => {
                 setAllCharacters(getFilteredArray(allCharactersArray, searchQuery));
                 setAllPlanets(getFilteredArray(allPlanetsArray, searchQuery));
                 setAllStarships(getFilteredArray(allStarshipsArray, searchQuery));
-                setCharactersSpinner(false)
-                setPlanetsSpinner(false);
-                setStarshipsSpinner(false);
+                allCharactersArray.length === 0 ? setCharactersSpinner(true) : setCharactersSpinner(false); 
+                allPlanetsArray.length === 0 ? setPlanetsSpinner(true) : setPlanetsSpinner(false);
+                allStarshipsArray.length === 0 ? setStarshipsSpinner(true) : setStarshipsSpinner(false);
+                
                 break;
         }
     }, [allCharactersArray, allPlanetsArray, allStarshipsArray, searchQuery, searchTermResult])
