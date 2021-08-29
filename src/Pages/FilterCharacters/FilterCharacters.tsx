@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {useState, useEffect} from 'react';
 import styles from './FilterCharactersStyles.module.scss';
 import cx from 'classnames';
@@ -17,7 +16,10 @@ const FilterCharacters = () => {
     const history = useHistory();
     const search = useLocation().search;
     const searchTerm = queryString.parse(search);
-    let filterQuery = searchTerm.filterQuery as string;
+    const filterTerm = searchTerm.category as string;
+    let query = searchTerm.filterQuery as string;
+
+    let filterQuery = query || filterTerm;
 
     const [allCharacters, setAllCharacters] = useState<string[]>([])
     
@@ -25,65 +27,64 @@ const FilterCharacters = () => {
     
     const [showDiv, setShowDiv] = useState(false);
 
-    const [genderIcon, setGenderIcon] = useState("");
     const [genderValue, setGenderValue] = useState(filterQuery)
 
-    const pageResult = Number(searchTerm.page);
+    // const pageResult = Number(searchTerm.page);
     const [totalCountValue, setTotalCount] = useState(1);
     const [category, setCategory] = useState('');
-    const [currentPage, setCurrentPage] = useState(pageResult);
+    const [currentPage, setCurrentPage] = useState(1);
 
 
     const getFilteredArray = (arrayData:string[], query:string) => {
         let filtered = arrayData.filter((element: any) => {
            return element.gender?.toLowerCase() === query.toLowerCase()
         });
-        setGenderIcon(query);
+        setTotalCount(filtered.length)
         return filtered;
     }
-    
+    console.log(filterQuery)
     useEffect(() => {
-
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+        
         switch (filterQuery) {
             case 'all':
                 setShowDiv(true)
                 setAllCharacters(allCharactersArray);
-        setGenderIcon(filterQuery);
                 break;
             case 'male':
                 setShowDiv(true)
                 let maleCharacters = getFilteredArray(allCharactersArray, filterQuery);
-                setAllCharacters(maleCharacters);
+                setAllCharacters(maleCharacters.slice(firstPageIndex, lastPageIndex));
                 break;
             
             case 'female':
                 setShowDiv(true)
                 let femaleCharacters = getFilteredArray(allCharactersArray, filterQuery);
-                setAllCharacters(femaleCharacters);
+                setAllCharacters(femaleCharacters.slice(firstPageIndex, lastPageIndex));
                 break;
             
             case 'hermaphrodite':
                 setShowDiv(true)
                 let hermaphroditeCharacters = getFilteredArray(allCharactersArray, filterQuery);
-                setAllCharacters(hermaphroditeCharacters);
+                setAllCharacters(hermaphroditeCharacters.slice(firstPageIndex, lastPageIndex));
                 break;
         
             default:
                 setShowDiv(true)
                 let robotCharacters = getFilteredArray(allCharactersArray, "n/a");
-                setAllCharacters(robotCharacters);
+                setAllCharacters(robotCharacters.slice(firstPageIndex, lastPageIndex));
                 break;
         }
 
-    }, [allCharactersArray, filterQuery])
+    }, [PageSize, allCharactersArray, currentPage, filterQuery])
 
-    console.log(genderIcon)
     const handleChange = (e: Record<string, any>) => {
         let gender = e.target.value;
         setGenderValue(gender)
         history.push(`/filter-characters/?filterQuery=${gender}`)
     }
-    
+
     return (
         <div className={cx(styles.container, "flex-col")}>
             <Header searchType="people" displaySearch />
@@ -121,7 +122,7 @@ const FilterCharacters = () => {
         totalCount={totalCountValue}
         pageSize={PageSize}
                 onPageChange={(page: number) => setCurrentPage(page)}
-                category={category}
+                category={filterQuery}
       />
         </div>
     )

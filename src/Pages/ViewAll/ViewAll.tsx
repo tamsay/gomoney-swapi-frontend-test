@@ -48,8 +48,6 @@ const ViewAll = () => {
     }
 
     useEffect(() => {
-        // const firstPageIndex = (currentPage - 1) * PageSize;
-        // const lastPageIndex = firstPageIndex + PageSize;
 
         (async () => {
             if (searchTermResult === 'starships') {
