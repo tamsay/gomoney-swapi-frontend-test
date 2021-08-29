@@ -1,11 +1,7 @@
 .container{
     width: 100%;
-    // position: fixed;
-    // top: 0;
     background-image: url(../../assets/hero-banner.jpg);
     padding: 0.5rem;
-    // z-index: 10;
-    // height: 7.5%;
     display: flex;
     align-items: center;
 
@@ -27,6 +23,7 @@
             color: white;
             margin: 0rem 0.25rem;
             text-decoration: none;
+            font-size: 0.9rem;
         }
         a:hover{
             font-weight: bold;
@@ -51,9 +48,7 @@
         font-weight: bold;
         margin-left: auto;
         a{
-            color: white;
             margin: 0rem 0.75rem;
-            text-decoration: none;
             font-size: 1.25rem;
         }
         a:hover{

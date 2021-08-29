@@ -56,7 +56,7 @@ const DetailsPage = () => {
                 <div className={cx(styles.content)}>
                     <div className={cx(styles.imageHeaderSection)}>
                         <div className={cx(styles.imageWrapper)}>
-                    <img src={`/${imageCategory}-${imageId}.jpg`} alt="card-img" className={cx(styles.heroImage)}/>
+                            <img src={`/${imageCategory}-${imageId}.jpg`} alt="card-img" className={cx(styles.heroImage)}/>
                         </div>
 
                         <div className={cx(styles.nameNavDiv)}>
