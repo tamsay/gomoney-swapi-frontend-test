@@ -47,6 +47,7 @@
         margin-left: auto;
         right: 0px;
         bottom: 0px;
+        padding-bottom: 0.25rem;
 
         .nameDiv{
             color: white;
@@ -62,6 +63,7 @@
         }
         .navigationDiv{
             color: white;
+            display: none;
 
             .icons{
                 margin: 0rem 0.5rem;
