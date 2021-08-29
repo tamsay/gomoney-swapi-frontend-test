@@ -86,7 +86,7 @@ const SearchResult = () => {
     }, [allCharactersArray, allPlanetsArray, allStarshipsArray, searchQuery, searchTermResult])
     
     return (
-        <div>
+        <div className={cx(styles.container)}>
             <Header searchType={searchTermResult} displaySearch />
 
             {
@@ -113,7 +113,7 @@ const SearchResult = () => {
                         {
                             planetsSpinner ? <Spinner /> :
                         allPlanets.length === 0 ? "No Match Found!!!" :
-                            (<div className={cx(styles.cardWrapper)}>
+                            (<div className={cx(styles.cardWrapper, styles.planetWrapper)}>
                                 {allPlanets.map((element: any, index: number) => {
                                     return (
                                         <PlanetCard key={index * 5} name={element.name} temperature={element.climate} population={element.population} url={element.url} />

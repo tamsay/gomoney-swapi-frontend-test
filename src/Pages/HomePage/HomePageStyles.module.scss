@@ -45,7 +45,7 @@
     .sectionWrapper{
         align-items: center;
         margin: 1.5rem 0rem;
-        padding: 0rem 1rem;
+        padding: 0rem 2rem;
         button{
             padding: 0.75rem 1.25rem;
             border: none;
@@ -85,7 +85,7 @@
     }
     .sectionWrapper{
         margin: 1.5rem 0rem;
-        padding: 0rem 4rem;
+        padding: 0rem 2rem;
         button{
             padding: 0.75rem 1.25rem;
             border: none;
@@ -109,6 +109,8 @@
         flex-direction: row;
         flex-wrap: wrap;
         padding: 0rem;
+        grid-gap: 0rem;
+
     }
     .outerPlanetWrapper{
         width: 100%;
