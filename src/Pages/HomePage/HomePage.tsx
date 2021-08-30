@@ -12,10 +12,6 @@ import { SwapiContext } from "../../context/index";
 import Header from "../../components/Header/Header";
 import { Icon } from "@iconify/react";
 
-
-// Spinner types
-// "Audio" | "BallTriangle" | "Bars" | "Circles" | "Grid" | "Hearts" | "Oval" | "Puff" | "Rings" | "TailSpin" | "ThreeDots" | "Watch" | "RevolvingDot" | "Triangle" | "Plane" | "MutatingDots" | "CradleLoader"
-
 const HomePage = () : JSX.Element => {
 
 	const history = useHistory();
