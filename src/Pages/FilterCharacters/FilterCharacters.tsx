@@ -27,9 +27,7 @@ const FilterCharacters = () => {
 
     const [genderValue, setGenderValue] = useState(filterQuery)
 
-    // const pageResult = Number(searchTerm.page);
     const [totalCountValue, setTotalCount] = useState(1);
-    const [category, setCategory] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
 
 
@@ -42,7 +40,6 @@ const FilterCharacters = () => {
     }
     
     useEffect(() => {
-        setCategory(query)
         const firstPageIndex = (currentPage - 1) * PageSize;
         const lastPageIndex = firstPageIndex + PageSize;
         

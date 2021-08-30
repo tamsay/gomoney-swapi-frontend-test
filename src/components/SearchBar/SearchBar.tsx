@@ -13,6 +13,7 @@ const SearchBar = (props: Record<string, any>) => {
 
     const handleSearch = () => {
         if (searchQuery !== "") {
+            localStorage.setItem('searchQuery', searchQuery);
         history.push(`/search/?type=${type}&searchQuery=${searchQuery}`)
         }
         else {
@@ -21,6 +22,7 @@ const SearchBar = (props: Record<string, any>) => {
     }
     const handleKeyDown = (event: { key: string; }) => {
         if (event.key === 'Enter' && searchQuery !== "") {
+            localStorage.setItem('searchQuery', searchQuery);
             history.push(`/search/?type=${type}&searchQuery=${searchQuery}`)
         }
         else if (event.key === "Enter") {

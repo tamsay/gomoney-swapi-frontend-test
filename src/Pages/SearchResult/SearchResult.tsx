@@ -12,13 +12,17 @@ import StarshipCard from "../../components/StarshipCard/StarshipCard";
 import PlanetCard from "../../components/PlanetCard/PlanetCard";
 import CharacterCard from "../../components/CharacterCard/CharacterCard";
 import SectionHeader from "../../components/SectionHeader/SectionHeader";
+import Pagination from "../../components/Pagination/Pagination";
 
 
 const SearchResult = () => {
     const search = useLocation().search;
     const searchTerm = queryString.parse(search);
-    const searchTermResult = searchTerm.type;
+    const searchTermResult = searchTerm.type as string;
     const searchQuery = searchTerm.searchQuery as string;
+
+
+
 
     const [allCharacters, setAllCharacters] = useState([])
     const [allPlanets, setAllPlanets] = useState([])
@@ -35,64 +39,88 @@ const SearchResult = () => {
     const [showPlanetsDiv, setShowPlanetsDiv] = useState(false);
     const [showStarshipsDiv, setShowStarshipsDiv] = useState(false);
     const [showDiv, setShowDiv] = useState(false);
+    const [showPagination, setShowPagination] = useState(true);
+
+    const PageSize = 10;
+    const query = searchTerm.category as string;
+    const [totalCountValue, setTotalCount] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+    let localStorageSearch = localStorage.getItem('searchQuery') as string;
 
 
     const getFilteredArray = (arrayData:string[], query:string) => {
         let filtered: any = [];
-                arrayData.map((element: any) => {
-                    if (element.name && element.name.toLowerCase().includes(query.toLowerCase())) {
-                     filtered.push(element);
-                    }
+        arrayData.map((element: any) => {
+                    
+                    // if (element?.name && element?.name.toLowerCase().includes(query.toLowerCase())) {
+                    //  filtered.push(element);
+                    // }
+            // if (element.name === undefined) {
+            //     console.log('hey');
+            // }
+            // else
+                if (element.name !== undefined && element.name.toLowerCase().includes(query.toLowerCase())) {
+                        filtered.push(element);
+                       }
+            
+                    
                     return true;
                 });
+        setTotalCount(filtered.length)
         return filtered;
     }
     
     useEffect(() => {
 
-        switch (searchTermResult) {
+        let search = searchQuery ? searchQuery : localStorageSearch;
+        const firstPageIndex = (currentPage - 1) * PageSize;
+        const lastPageIndex = firstPageIndex + PageSize;
+
+        switch (searchTermResult || query ) {
             case 'characters':
                 setShowCharactersDiv(true)
-                let filteredCharacters = getFilteredArray(allCharactersArray, searchQuery);
-                setAllCharacters(filteredCharacters);
+                let filteredCharacters = getFilteredArray(allCharactersArray, search);
+                setAllCharacters(filteredCharacters.slice(firstPageIndex, lastPageIndex));
                 allCharactersArray.length === 0 ? setCharactersSpinner(true) : setCharactersSpinner(false); 
                 break;
             
             case 'planets':
                 setShowPlanetsDiv(true)
-                let filteredPlanets = getFilteredArray(allPlanetsArray, searchQuery);
-                setAllPlanets(filteredPlanets);
+                let filteredPlanets = getFilteredArray(allPlanetsArray, search);
+                setAllPlanets(filteredPlanets.slice(firstPageIndex, lastPageIndex));
                 allPlanetsArray.length === 0 ? setPlanetsSpinner(true) : setPlanetsSpinner(false);
                 break;
             
             case 'starships':
                 setShowStarshipsDiv(true)
-                let filteredStarships = getFilteredArray(allStarshipsArray, searchQuery);
-                setAllStarships(filteredStarships);
+                let filteredStarships = getFilteredArray(allStarshipsArray, search);
+                setAllStarships(filteredStarships.slice(firstPageIndex, lastPageIndex));
                 allStarshipsArray.length === 0 ? setStarshipsSpinner(true) : setStarshipsSpinner(false);
                 break;
         
             default:
                 setShowDiv(true)
-                setAllCharacters(getFilteredArray(allCharactersArray, searchQuery));
-                setAllPlanets(getFilteredArray(allPlanetsArray, searchQuery));
-                setAllStarships(getFilteredArray(allStarshipsArray, searchQuery));
+                setShowPagination(false)
+                setAllCharacters(getFilteredArray(allCharactersArray, search));
+                setAllPlanets(getFilteredArray(allPlanetsArray, search));
+                setAllStarships(getFilteredArray(allStarshipsArray, search));
                 allCharactersArray.length === 0 ? setCharactersSpinner(true) : setCharactersSpinner(false); 
                 allPlanetsArray.length === 0 ? setPlanetsSpinner(true) : setPlanetsSpinner(false);
                 allStarshipsArray.length === 0 ? setStarshipsSpinner(true) : setStarshipsSpinner(false);
                 
                 break;
         }
-    }, [allCharactersArray, allPlanetsArray, allStarshipsArray, searchQuery, searchTermResult])
+    }, [allCharactersArray, allPlanetsArray, allStarshipsArray, currentPage, localStorageSearch, query, searchQuery, searchTermResult])
     
     return (
-        <div className={cx(styles.container)}>
-            <Header searchType={searchTermResult} displaySearch />
+        <div className={cx(styles.container, "flex-col")}>
+            <Header searchType={searchTermResult || query} displaySearch />
 
             {
                 showDiv || showCharactersDiv ? 
                     <div className={cx(styles.sectionWrapper, "flex-col")}>
-                    <SectionHeader headerText="Search Result: Characters" />
+                        <SectionHeader headerText="Search Result: Characters" />
+                        <span>Search query: {searchQuery || localStorageSearch }</span>
                         {
                         charactersSpinner ? <Spinner /> :
                         allCharacters.length === 0 ? "No Match Found!!!" :
@@ -109,7 +137,9 @@ const SearchResult = () => {
             {
                 showDiv || showPlanetsDiv ?
                 <div className={cx(styles.sectionWrapper, "flex-col")}>
-                    <SectionHeader headerText="Search Result: Planets" />
+                        <SectionHeader headerText="Search Result: Planets" />
+                        <span>Search query: {searchQuery || localStorageSearch}</span>
+                        
                         {
                             planetsSpinner ? <Spinner /> :
                         allPlanets.length === 0 ? "No Match Found!!!" :
@@ -126,7 +156,9 @@ const SearchResult = () => {
             {
                 showDiv || showStarshipsDiv ?
                 <div className={cx(styles.sectionWrapper, "flex-col")}>
-                    <SectionHeader headerText="Search Result: Starships" />
+                        <SectionHeader headerText="Search Result: Starships" />
+                        <span>Search query: {searchQuery || localStorageSearch}</span>
+                        
                         {
                             starshipsSpinner ? <Spinner /> :
                         allStarships.length === 0 ? "No Match Found!!!" :
@@ -139,6 +171,16 @@ const SearchResult = () => {
                     }
                 </div> : ""
             }
+
+{showPagination ? <Pagination
+                className={cx(styles["pagination-bar"])}
+        currentPage={currentPage}
+        totalCount={totalCountValue}
+        pageSize={PageSize}
+                onPageChange={(page: number) => setCurrentPage(page)}
+                category={searchTermResult || query}
+      /> : ""}
+
 
         </div>
     )
