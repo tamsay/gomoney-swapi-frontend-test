@@ -1,38 +1,40 @@
-import {useState, useEffect} from 'react';
-import styles from './HeaderStyles.module.scss';
-import cx from 'classnames';
-import Navbar from '../Navbar/Navbar';
-import Logo from '../../assets/logo.png';
-import SearchBar from '../SearchBar/SearchBar';
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, {useState, useEffect} from "react";
+import styles from "./HeaderStyles.module.scss";
+import cx from "classnames";
+import Navbar from "../Navbar/Navbar";
+import Logo from "../../assets/logo.png";
+import SearchBar from "../SearchBar/SearchBar";
 
-const Header = (props:any) => {
-    const { searchType, displaySearch, displayHeaderHero } = props;
+const Header = (props:any) : JSX.Element=> {
+	const { searchType, displaySearch, displayHeaderHero } = props;
     
-    const [headerHero, setHeaderHero] = useState(true);
+	const [headerHero, setHeaderHero] = useState(true);
 
-    useEffect(() => {
-        displayHeaderHero === undefined ? setHeaderHero(true) : setHeaderHero(displayHeaderHero);
-    }, [displayHeaderHero])
+	useEffect(() => {
+		displayHeaderHero === undefined ? setHeaderHero(true) : setHeaderHero(displayHeaderHero);
+	}, [displayHeaderHero]);
     
-    return (
-        <div className={cx(styles.container, "flex-col")}>
+	return (
+		<div className={cx(styles.container, "flex-col")}>
 
-            <Navbar />
+			<Navbar />
 
-        {headerHero ? 
-            <div><div className={cx(styles["page-header"], "flex-row")}>
-                <div className={cx(styles["logo-div"], "flex-row")}>
-                    <img className={styles.logo} src={Logo} alt="logo" />
-                </div>
-                <p className={cx(styles["page-header-text"])}>Directory</p>
-            </div>
+			{headerHero ? 
+				<div><div className={cx(styles["page-header"], "flex-row")}>
+					<div className={cx(styles["logo-div"], "flex-row")}>
+						<img className={styles.logo} src={Logo} alt="logo" />
+					</div>
+					<p className={cx(styles["page-header-text"])}>Directory</p>
+				</div>
 
-            <p className={cx(styles["header-intro"])}>Find your favorite Characters, Films, Species, Starships and Planets</p></div>
-                : "" }
+				<p className={cx(styles["header-intro"])}>Find your favorite Characters, Films, Species, Starships and Planets</p></div>
+				: "" }
 
-            {displaySearch === true ? <SearchBar type={searchType} /> : ""}
-        </div>
-    )
-}
+			{displaySearch === true ? <SearchBar type={searchType} /> : ""}
+		</div>
+	);
+};
 
 export default Header;
