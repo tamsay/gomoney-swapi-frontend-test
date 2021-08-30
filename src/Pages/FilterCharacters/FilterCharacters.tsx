@@ -16,10 +16,8 @@ const FilterCharacters = () => {
     const history = useHistory();
     const search = useLocation().search;
     const searchTerm = queryString.parse(search);
-    const filterTerm = searchTerm.category as string;
-    let query = searchTerm.filterQuery as string;
-
-    let filterQuery = query || filterTerm;
+    const query = searchTerm.category as string;
+    let filterQuery = searchTerm.filterQuery as string;
 
     const [allCharacters, setAllCharacters] = useState<string[]>([])
     
@@ -37,54 +35,55 @@ const FilterCharacters = () => {
 
     const getFilteredArray = (arrayData:string[], query:string) => {
         let filtered = arrayData.filter((element: any) => {
-           return element.gender?.toLowerCase() === query.toLowerCase()
+            return element.gender === query;
         });
         setTotalCount(filtered.length)
         return filtered;
     }
-    console.log(filterQuery)
+    
     useEffect(() => {
+        setCategory(query)
         const firstPageIndex = (currentPage - 1) * PageSize;
         const lastPageIndex = firstPageIndex + PageSize;
         
-        switch (filterQuery) {
+        switch (filterQuery || query) {
             case 'all':
                 setShowDiv(true)
                 setAllCharacters(allCharactersArray);
                 break;
             case 'male':
                 setShowDiv(true)
-                let maleCharacters = getFilteredArray(allCharactersArray, filterQuery);
+                let maleCharacters = getFilteredArray(allCharactersArray, "male");
                 setAllCharacters(maleCharacters.slice(firstPageIndex, lastPageIndex));
                 break;
             
             case 'female':
                 setShowDiv(true)
-                let femaleCharacters = getFilteredArray(allCharactersArray, filterQuery);
+                let femaleCharacters = getFilteredArray(allCharactersArray, "female");
                 setAllCharacters(femaleCharacters.slice(firstPageIndex, lastPageIndex));
                 break;
             
             case 'hermaphrodite':
                 setShowDiv(true)
-                let hermaphroditeCharacters = getFilteredArray(allCharactersArray, filterQuery);
+                let hermaphroditeCharacters = getFilteredArray(allCharactersArray, "hermaphrodite");
                 setAllCharacters(hermaphroditeCharacters.slice(firstPageIndex, lastPageIndex));
                 break;
         
             default:
                 setShowDiv(true)
                 let robotCharacters = getFilteredArray(allCharactersArray, "n/a");
-                setAllCharacters(robotCharacters.slice(firstPageIndex, lastPageIndex));
+                setAllCharacters(robotCharacters);
                 break;
         }
 
-    }, [PageSize, allCharactersArray, currentPage, filterQuery])
+    }, [PageSize, allCharactersArray, currentPage, filterQuery, query])
 
     const handleChange = (e: Record<string, any>) => {
         let gender = e.target.value;
         setGenderValue(gender)
         history.push(`/filter-characters/?filterQuery=${gender}`)
     }
-
+    
     return (
         <div className={cx(styles.container, "flex-col")}>
             <Header searchType="people" displaySearch />
@@ -122,7 +121,7 @@ const FilterCharacters = () => {
         totalCount={totalCountValue}
         pageSize={PageSize}
                 onPageChange={(page: number) => setCurrentPage(page)}
-                category={filterQuery}
+                category={filterQuery || query}
       />
         </div>
     )
